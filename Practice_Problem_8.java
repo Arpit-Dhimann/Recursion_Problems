@@ -1,0 +1,29 @@
+//PROBLEM: Print all unique subsequences of a string.
+
+import java.util.HashSet;
+
+public class Practice_Problem_8 {
+    public static void printSubseq(String str, int idx, String res, HashSet<String> allSubseq) {
+        if (idx == str.length()) {
+            if (allSubseq.contains(res)) {
+                return;
+            } else {
+                System.out.println(res);
+                allSubseq.add(res);
+                return;
+            }
+        }
+        
+        // Choose
+        printSubseq(str, idx + 1, res + str.charAt(idx), allSubseq);
+        
+        // Don't choose
+        printSubseq(str, idx + 1, res, allSubseq);
+    }
+
+    public static void main(String[] args) {
+        String str = "aaa";
+        HashSet<String> allSubseq = new HashSet<>();
+        printSubseq(str, 0, "", allSubseq);
+    }
+}
